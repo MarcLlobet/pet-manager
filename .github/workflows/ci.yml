@@ -1,0 +1,41 @@
+name: CI Checks
+
+on:
+  pull_request:
+    branches:
+      - "*"
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🛠️ Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "yarn"
+
+      - name: 📦 Install dependencies
+        run: yarn
+
+      - name: 🎨 Prettier check
+        run: yarn prettier --check .
+
+      - name: 🧹 ESLint check
+        run: yarn eslint .
+
+      - name: 🛡️ TypeScript check
+        run: yarn type:check
+
+      - name: ✅ Run tests
+        run: yarn test
+
+      - name: 📊 Test coverage
+        run: yarn test:coverage
+
+      - name: Build
+        run: yarn build
