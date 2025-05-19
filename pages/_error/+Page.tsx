@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { usePageContext } from "vike-react/usePageContext";
 
-const Wrapper = styled.div`
-  background: green;
+const Wrapper = styled.main`
+  width: 100%;
 `;
 
 export default function Page() {

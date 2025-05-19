@@ -5,7 +5,7 @@ import type { UserConfig } from "vite";
 
 export default defineConfig({
   plugins: [
-    vike(),
+    !process.env.VITEST && vike(),
     react({
       babel: {
         plugins: [["babel-plugin-styled-components"]],

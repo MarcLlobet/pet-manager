@@ -1,0 +1,18 @@
+meta {
+  name: Get pets
+  type: http
+  seq: 1
+}
+
+get {
+  url: https://my-json-server.typicode.com/Feverup/fever_pets_data/pets?_page=2&_limit=5&_sort=name&_order=asc
+  body: none
+  auth: inherit
+}
+
+params:query {
+  _page: 2
+  _limit: 5
+  _sort: name
+  _order: asc
+}
