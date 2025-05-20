@@ -40,6 +40,12 @@ export default tseslint.config(
         },
       ],
       "@typescript-eslint/no-namespace": 0,
+      "no-restricted-imports": [
+        "error",
+        {
+          patterns: [{ regex: "^@mui/[^/]+$" }],
+        },
+      ],
     },
   },
 
