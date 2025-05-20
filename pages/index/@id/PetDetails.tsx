@@ -20,6 +20,9 @@ export const PetDetails = ({ pet }: { pet: HealthyPet }) => {
       <Grid size={6}>
         <List>
           <ListItem>
+            <ListItemText primary="Name" secondary={pet.name} />
+          </ListItem>
+          <ListItem>
             <ListItemText primary="Kind" secondary={pet.kind} />
           </ListItem>
           <ListItem>

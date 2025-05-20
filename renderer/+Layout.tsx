@@ -66,7 +66,7 @@ function Header() {
           <Box sx={{ flexGrow: 1 }}>
             <Box>
               <Link href="/">
-                <Box sx={{ mr: 2 }}>
+                <Box data-testid="logo" sx={{ mr: 2 }}>
                   <Logo fill="white" />
                 </Box>
                 <Box>

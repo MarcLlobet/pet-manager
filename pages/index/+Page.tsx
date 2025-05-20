@@ -41,17 +41,19 @@ export default function Page() {
   }, [state]);
 
   return (
-    <PetTable
-      pets={pets}
-      columns={["id", "name", "kind", "weight", "height", "length"]}
-      totalPets={totalPets}
-      rowsPerPage={state._limit}
-      page={state._page - 1}
-      orderBy={state._sort}
-      orderType={state._order}
-      onRequestSort={handleSort}
-      onPageChange={handlePageChange}
-      onRowsPerPageChange={handleRowsPerPageChange}
-    />
+    <div data-testid="pets-dashboard-page">
+      <PetTable
+        pets={pets}
+        columns={["id", "name", "kind", "weight", "height", "length"]}
+        totalPets={totalPets}
+        rowsPerPage={state._limit}
+        page={state._page - 1}
+        orderBy={state._sort}
+        orderType={state._order}
+        onRequestSort={handleSort}
+        onPageChange={handlePageChange}
+        onRowsPerPageChange={handleRowsPerPageChange}
+      />
+    </div>
   );
 }

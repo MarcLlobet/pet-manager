@@ -34,7 +34,7 @@ export default function PetOfTheDayModal({ onClose }: { onClose: () => void }) {
         Pet of the Day
       </DialogTitle>
       <IconButton
-        aria-label="close"
+        aria-label="top-close"
         onClick={onClose}
         sx={(theme) => ({
           position: "absolute",
@@ -49,7 +49,7 @@ export default function PetOfTheDayModal({ onClose }: { onClose: () => void }) {
         <PetDetails pet={pet} />
       </DialogContent>
       <DialogActions>
-        <Button autoFocus onClick={onClose}>
+        <Button aria-label="bottom-close" autoFocus onClick={onClose}>
           Close
         </Button>
       </DialogActions>

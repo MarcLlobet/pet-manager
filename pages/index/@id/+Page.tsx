@@ -5,11 +5,5 @@ import { PetDetails } from "./PetDetails";
 export default function Page() {
   const pet: HealthyPet = useData();
 
-  if (!pet) return null;
-
-  return (
-    <div key={pet.id}>
-      <PetDetails pet={pet} />
-    </div>
-  );
+  return <div data-testid="pet-details-page">{pet ? <PetDetails pet={pet} /> : null}</div>;
 }
