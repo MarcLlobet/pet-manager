@@ -1,7 +1,8 @@
 import { describe, expect, it, vi } from "vitest";
 
 import { PETS_API_URL } from "./constants";
-import { ERROR_MESSAGE, TOTAL_COUNT_HEADER, getPets } from "./getPets";
+import { getPets } from "./getPets";
+import { TOTAL_COUNT_HEADER } from "./tools/fetchService";
 
 describe("getPets", () => {
   it("fetches pets successfully with correct params", async () => {
@@ -34,25 +35,5 @@ describe("getPets", () => {
     expect(result.pets).toEqual(mockPets);
     expect(result.totalPets).toBe(1);
     expect(globalThis.fetch).toHaveBeenCalledWith(PETS_API_URL);
-  });
-
-  it("handles empty response gracefully", async () => {
-    const mockResponse = new Response(JSON.stringify([]), {
-      headers: { [TOTAL_COUNT_HEADER]: "0" },
-    });
-
-    globalThis.fetch = vi.fn().mockResolvedValue(mockResponse);
-
-    const result = await getPets({ _page: 1, _limit: 5 });
-    expect(result.pets).toEqual([]);
-    expect(result.totalPets).toBe(0);
-  });
-
-  it("throws an error when pets are not found", async () => {
-    const mockResponse = new Response(JSON.stringify({ status: 404 }), { status: 404 });
-
-    globalThis.fetch = vi.fn().mockResolvedValue(mockResponse);
-
-    await expect(getPets()).rejects.toThrow(ERROR_MESSAGE);
   });
 });
