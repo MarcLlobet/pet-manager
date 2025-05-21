@@ -1,5 +1,5 @@
 import React from "react";
-import Table from "@mui/material/Table";
+import TableMui from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
@@ -89,7 +89,7 @@ export type PetTableProps = {
   onRowsPerPageChange: (newLimit: LimitType) => void;
 };
 
-export const PetTable = ({
+export const Table = ({
   items,
   columns,
   totalPets,
@@ -116,7 +116,7 @@ export const PetTable = ({
 
   return (
     <TableContainer component={Paper}>
-      <Table size="small">
+      <TableMui size="small">
         <TableHead>
           <TableRow>
             <TableCell></TableCell>
@@ -166,7 +166,7 @@ export const PetTable = ({
             />
           </TableRow>
         </TableFooter>
-      </Table>
+      </TableMui>
     </TableContainer>
   );
 };

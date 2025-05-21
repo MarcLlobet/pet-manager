@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { LimitType, PetListInfo, SortType } from "../types";
 import { useAppState } from "../context/AppContext";
 import { getPets } from "../controllers/getPets";
-import { PetTable } from "../components/Table";
+import { Table } from "../components/Table";
 import { Layout } from "../components/Layout";
 
 export const IndexPage = () => {
@@ -43,7 +43,7 @@ export const IndexPage = () => {
   return (
     <div data-testid="pets-dashboard-page">
       <Layout>
-        <PetTable
+        <Table
           items={pets}
           columns={["id", "name", "kind", "weight", "height", "length"]}
           totalPets={totalPets}

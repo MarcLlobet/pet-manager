@@ -79,8 +79,6 @@ function Header() {
     })();
   }, []);
 
-  if (!pet) return null;
-
   return (
     <>
       <AppBar position="static">
@@ -112,7 +110,7 @@ function Header() {
         </Toolbar>
       </AppBar>
       <Modal open={isModalOpen} onClose={handleCloseModal}>
-        <Dialog onClose={handleCloseModal} modalContent={<DetailView item={pet} />} />
+        <Dialog onClose={handleCloseModal} modalContent={<DetailView item={pet as PetDetailInfo} />} />
       </Modal>
     </>
   );
