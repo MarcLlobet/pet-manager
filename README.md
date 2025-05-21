@@ -1,64 +1,64 @@
-# Frontend Code Challenge
+# 🐾 Fever Pets
 
-Fever's Code Challenge for Front End job applicants
+A frontend project built with **React**, **TypeScript**, focused on clean architecture, strong typing, and excellent developer experience.
 
-## Fever Pets
+![Gravació de pantalla 2025-05-21 a les 16 16 11](https://github.com/user-attachments/assets/82369734-018c-403b-8947-a98dc4cb938d)
 
-Welcome to our awesome project, _Fever Pets! Together_, we are gonna build the best place for our pets to be, so we can show them to the world. Isn't it fantastic?
-We are thrilled to start working with you and we would like you to perform a few tasks, but first let us introduce the Fever Pets® project.
-Fever Pets will be the main place for our users to see data about pets. What pets you say? Well, ALL pets of course, we don't care about the owners, where those pets are based, or anything. In fact, we don't even have that information!
+---
 
-### What will Fever Pets® do on its first version?
+## 🚀 Getting Started
 
-- It will have a home page that will list the pets returned by the list endpoint, with the name of the pet and it's basic traits, as well as the pet's thumbnail. This won't display the description inside the pet structure
-- Home page will allow to sort the pets based on the quantifiable criteria: weight, length, height, name, or kind.
-- There will be a detail page that will be accessible from the home page, by tapping on the cell/row for a particular pet
-- The detail page will display the photo of the pet in a bigger size, and all the data, including the description
-- Navigation back and forth between detail and home should be possible
-- If any kind of sorting is applied, and detail is opened, navigating to home should preserve this order.
-- There should be a button that gives us the "pet of the day" in the home page. For every calendar day there should be a favourite pet. The pet should not change during the navigation and will remain the same for the whole day.
-  - Example: If the user clicks on the 'pet of the day button' at 3 pm the favourite pet is 'Bingo', and if the user clicks on the 'pet of the day button' at 8 pm the pet should still be 'Bingo'
+To run the project locally, follow these steps:
 
-That's basically our glorious Fever Pets® v1.0, and I'm sure you are already thrilled to start dealing with it!
-In order for us to be able to see the progress, and give you feedback, we would ask for it to be done by making several PRs to the project, doing each PR after the previous one has been approved and merged:
+- 📦 Install dependencies: `yarn`
+-	🧪 Start the dev server: `yarn dev`
+-	✅ Run unit tests with Vitest: `yarn test`
 
-- PR #1: Create the project basic structure, this is just the skeleton of the project for whichever framework you have chosen to use (Angular, Vue, or whichever you fancy using). This PR should not contain any logic related to Fever Pets®
-- After that, create as many pull requests as you want for the desired features. As we cannot review the PRs on time, just merge them to development or master and continue your code test, no need to wait for us. Every decision made during the development, should be written either on the body of the pull request or on the README.md
+###	🧪 Integration Tests with Playwright
 
-### Technical details
+Integration tests are run with Playwright. They simulate real user behavior and verify that business requirements are met (BDD-style).
 
-In order to have Fever pets working, we already had our backend team working, and they are offering two endpoints you can consume:
+Before running them:
+-	⚙️ Install Playwright dependencies: `yarn test:integration:install`
+-	🚦 Run integration tests: `yarn test:integration`
 
-- `https://my-json-server.typicode.com/Feverup/fever_pets_data/pets` To fetch the list of pets on the server
-- `https://my-json-server.typicode.com/Feverup/fever_pets_data/pets/<pet_id>` To fetch the details about a particular pet with id <pet_id>
-- Here you have some interesting links about the API:
-  - [Pagination](https://github.com/typicode/json-server#paginate)
-  - [Sorting](https://github.com/typicode/json-server#sort)
-  - [Filtering](https://github.com/typicode/json-server#filter)
+## 🧠 Architecture
 
-The details endpoint will return a Pet object, with the following structure:
+This project follows principles from Clean Architecture and Hexagonal Architecture, inspired by software design best practices.
 
-- `id` Int the pet's unique id
-- `name` String The pet's name
-- `kind` String The pet's kind (dog or cat on the first version)
-- `weight` Int The pet's weight, in grams
-- `height` Int The pet's height in centimeters
-- `length` Int The pet's length, in centimeters
-- `photo_url` String The pet's picture url
-- `description` String A small text about the pet
-- `number_of_lives` Int between 1 and 7, only for Cats
-- ...and more in the future
+📐 Core Design Principles
+-	Strict typing with TypeScript for safety and clarity
+-	Pure functions for predictable logic and easy testing
+-	SOLID principles for maintainable and scalable code
+-	Separation of concerns across well-defined layers
+-	Emphasis on testability, decoupling and modularity
 
-The pets have a `health` assigned, `weight / (height * length)`. The health has three tiers:
+ ### 📁 Project Structure
 
-- `unhealthy` below 2 or over 5
-- `healthy` between 3 and 5
-- `very healthy` between 2 and 3
-- If the pet is a cat and the number of lives is 1, the pet is always `unhealthy`
-- Take into account that more pets are coming and they could have different health calculations
+Below is an overview of the folder structure and their responsibilities:
+```
+fever_pets/
+├── src/
+│   ├── adapters/          # 🧩 Adapt data from services to UI-friendly shapes
+│   ├── components/        # 🧱 Reusable, presentational React components
+│   ├── context/           # 🌐 Global app state and routing logic
+│   ├── controllers/       # 🎮 Coordinates business logic (like useCases)
+│   ├── pages/             # 🗺️ Entry points for each route/view
+│   ├── services/          # 🔌 API clients and side-effect handlers
+│   ├── storage/           # 💾 Storage handlers for fetch persistence
+│   ├── types.ts           # 🧾 Shared TypeScript types
+│   └── main.tsx           # 🚀 App entry point
+├── tests/                 # 🧪 Playwright integration tests
+├── playwright.config.ts  # ⚙️ Playwright configuration
+└── ...
+```
+This structure promotes clarity, scalability, and testability — each layer has a single responsibility and communicates with others through well-defined boundaries.
 
-### Considerations
+✅ Testing Strategy
+-	Unit tests with Vitest for components, services and logic
+-	Integration tests with Playwright simulate real user behavior
+-	Tests are written following a BDD-style to align with the business requirements provided in the original exercise
 
-- More pets and pets' type can be added in the future
-- We could have millions of pets registered in the near future and we need to take into account performance
-- Fever Pets can have users in different countries
+---
+
+Built with ❤️ clean code, strong architecture, and a touch of feline fun 🐈
