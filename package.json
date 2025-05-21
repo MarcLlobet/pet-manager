@@ -9,8 +9,7 @@
     "prepare": "husky || true",
     "test:integration": "playwright test",
     "test:integration:ui": "playwright codegen",
-    "test:integration:install": "playwright install",
-    "check:unused-exports": "ts-prune"
+    "test:integration:install": "playwright install"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^4.4.1",
@@ -45,7 +44,6 @@
     "prettier": "^3.5.3",
     "react-router-dom": "^7.6.0",
     "styled-components": "^6.1.18",
-    "ts-prune": "^0.10.3",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.31.0",
