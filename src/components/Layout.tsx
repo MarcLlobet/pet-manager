@@ -85,7 +85,7 @@ function Header() {
 
   return (
     <>
-      <AppBar position="static">
+      <AppBar position="sticky">
         <Toolbar>
           <Box sx={{ flexGrow: 1 }}>
             <Box>

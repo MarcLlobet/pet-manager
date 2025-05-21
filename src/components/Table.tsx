@@ -145,7 +145,7 @@ export const Table = ({
           {items.map((item) => (
             <TableRow key={item.id}>
               <TableCell>
-                <img src={item.image.src} alt={item.image.src} width="50" />
+                <img src={item.image.src} alt={item.image.alt} width="50" />
               </TableCell>
               {columns.map((column) => (
                 <TableCell key={`${item.id}-${column}`}>
