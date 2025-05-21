@@ -12,7 +12,7 @@ export default defineConfig({
     }),
   ],
   ssr: {
-    noExternal: ["styled-components"],
+    noExternal: ["styled-components", "@mui"],
   },
   build: {
     target: "es2022",

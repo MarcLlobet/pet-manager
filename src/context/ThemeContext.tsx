@@ -61,7 +61,10 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   const toggleTheme = () => {
-    setPrefersDarkMode((prevState) => !prevState);
+    setPrefersDarkMode((prevState) => {
+      localStore.set(PREFERS_DARK_MODE_KEY, !prevState);
+      return !prevState;
+    });
   };
 
   const theme = prefersDarkMode ? themeMap.dark : themeMap.light;
