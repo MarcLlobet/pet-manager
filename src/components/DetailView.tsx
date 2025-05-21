@@ -32,7 +32,7 @@ export const DetailView = ({ item }: DetailViewProps) => {
       <Grid size={6}>
         <List>
           {details.map(({ title, value }) => (
-            <ListItem key={title}>
+            <ListItem key={title} disablePadding dense>
               <ListItemText primary={title} secondary={value} />
             </ListItem>
           ))}

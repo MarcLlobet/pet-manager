@@ -21,6 +21,7 @@ import TableSortLabel from "@mui/material/TableSortLabel";
 import visuallyHidden from "@mui/utils/visuallyHidden";
 
 import { LimitType, OrderType, PetListInfo, SortType } from "../types";
+import { Typography } from "@mui/material";
 
 type TablePaginationActionsProps = {
   count: number;
@@ -118,7 +119,7 @@ export const Table = ({
 
   return (
     <TableContainer component={Paper}>
-      <TableMui size="small">
+      <TableMui size="small" sx={{ minHeight: 400 }}>
         <TableHead>
           <TableRow>
             <TableCell></TableCell>
@@ -148,7 +149,21 @@ export const Table = ({
               </TableCell>
               {columns.map((column) => (
                 <TableCell key={`${item.id}-${column}`}>
-                  {column === "name" ? <Link to={`${item.id}`}>{item[column]}</Link> : item[column]}
+                  {column === "name" ? (
+                    <Link to={`${item.id}`} style={{ textDecoration: "none" }}>
+                      <Typography
+                        sx={{
+                          color: "primary.main",
+                          textTransform: "capitalize",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        {item[column]}
+                      </Typography>
+                    </Link>
+                  ) : (
+                    item[column]
+                  )}
                 </TableCell>
               ))}
             </TableRow>
