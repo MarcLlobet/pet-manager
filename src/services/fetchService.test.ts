@@ -1,4 +1,5 @@
-import { describe, it, expect, vi } from "vitest";
+import { describe, expect, it, vi } from "vitest";
+
 import { fetchService, getSearchParams } from "./fetchService";
 
 describe("fetchService", () => {
@@ -6,7 +7,7 @@ describe("fetchService", () => {
     const mockData = { message: "success" };
     const mockResponse = new Response(JSON.stringify(mockData));
 
-    global.fetch = vi.fn().mockResolvedValue(mockResponse);
+    globalThis.fetch = vi.fn().mockResolvedValue(mockResponse);
 
     const result = await fetchService({
       url: "https://example.com",
@@ -15,13 +16,13 @@ describe("fetchService", () => {
     });
 
     expect(result.data).toEqual(mockData);
-    expect(global.fetch).toHaveBeenCalledWith("https://example.com?key=value");
+    expect(globalThis.fetch).toHaveBeenCalledWith("https://example.com?key=value");
   });
 
   it("throws an error when the response status is 404", async () => {
     const mockResponse = new Response(JSON.stringify({ status: 404 }), { status: 404 });
 
-    global.fetch = vi.fn().mockResolvedValue(mockResponse);
+    globalThis.fetch = vi.fn().mockResolvedValue(mockResponse);
 
     await expect(
       fetchService({

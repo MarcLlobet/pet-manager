@@ -1,10 +1,13 @@
-import React from "react";
-import { render, screen } from "@testing-library/react";
-import { Layout } from "./Layout";
-import { AppStateProvider } from "../context/AppContext";
-import { ThemeProvider } from "../context/ThemeContext";
 import { MemoryRouter } from "react-router-dom";
 import { beforeAll, describe, expect, it, vi } from "vitest";
+
+import React from "react";
+
+import { render, screen } from "@testing-library/react";
+
+import { AppStateProvider } from "../context/AppContext";
+import { ThemeProvider } from "../context/ThemeContext";
+import { Layout } from "./Layout";
 
 beforeAll(() => {
   window.matchMedia = vi.fn().mockImplementation((query) => ({

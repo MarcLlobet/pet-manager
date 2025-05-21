@@ -1,24 +1,26 @@
+import { Link } from "react-router-dom";
+
 import React from "react";
-import TableMui from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import TableFooter from "@mui/material/TableFooter";
-import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
-import TablePagination from "@mui/material/TablePagination";
+
 import FirstPageIcon from "@mui/icons-material/FirstPage";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
+import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import Paper from "@mui/material/Paper";
+import TableMui from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableFooter from "@mui/material/TableFooter";
+import TableHead from "@mui/material/TableHead";
+import TablePagination from "@mui/material/TablePagination";
+import TableRow from "@mui/material/TableRow";
+import TableSortLabel from "@mui/material/TableSortLabel";
 import visuallyHidden from "@mui/utils/visuallyHidden";
 
-import TableSortLabel from "@mui/material/TableSortLabel";
-import { LimitType, OrderType, SortType, PetListInfo } from "../types";
-import { Link } from "react-router-dom";
+import { LimitType, OrderType, PetListInfo, SortType } from "../types";
 
 type TablePaginationActionsProps = {
   count: number;

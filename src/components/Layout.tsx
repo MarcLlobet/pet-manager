@@ -1,19 +1,21 @@
+import { Link } from "react-router-dom";
+
 import React, { useEffect, useState } from "react";
+
 import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
 import Modal from "@mui/material/Modal";
-
 import SvgIcon, { SvgIconProps } from "@mui/material/SvgIcon";
-import { DetailView } from "./DetailView";
-import { Dialog } from "./Dialog";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+
+import { useTheme } from "../context/ThemeContext";
 import { getPetById } from "../controllers/getPetById";
 import { PetDetailInfo } from "../types";
-import { Link } from "react-router-dom";
-import { useTheme } from "../context/ThemeContext";
+import { DetailView } from "./DetailView";
+import { Dialog } from "./Dialog";
 
 function Logo(props: SvgIconProps) {
   return (

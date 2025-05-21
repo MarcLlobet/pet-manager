@@ -1,11 +1,14 @@
-import React from "react";
-import { render, screen } from "@testing-library/react";
-import { PetTableProps, Table } from "./Table";
-import { AppStateProvider } from "../context/AppContext";
-import { ThemeProvider } from "../context/ThemeContext";
 import { MemoryRouter } from "react-router-dom";
 import { beforeAll, describe, expect, it, vi } from "vitest";
+
+import React from "react";
+
+import { render, screen } from "@testing-library/react";
+
+import { AppStateProvider } from "../context/AppContext";
+import { ThemeProvider } from "../context/ThemeContext";
 import { PetListInfo } from "../types";
+import { PetTableProps, Table } from "./Table";
 
 beforeAll(() => {
   window.matchMedia = vi.fn().mockImplementation((query) => ({

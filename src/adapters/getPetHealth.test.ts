@@ -1,7 +1,8 @@
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
+
+import { PetRaw } from "../services/types";
 import { getDefaultHealth, getPetHealth, healthTypes } from "./getPetHealth";
 import { getHealthAmount } from "./getPetHealth";
-import { PetRaw } from "../services/types";
 
 describe("getDefaultHealth", () => {
   it("returns 'healthy' for valid health amount", () => {

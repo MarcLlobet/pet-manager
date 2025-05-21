@@ -1,9 +1,11 @@
+import { useParams } from "react-router-dom";
+
 import React, { useEffect, useState } from "react";
+
 import { DetailView } from "../components/DetailView";
+import { Layout } from "../components/Layout";
 import { getPetById } from "../controllers/getPetById";
 import { PetDetailInfo } from "../types";
-import { useParams } from "react-router-dom";
-import { Layout } from "../components/Layout";
 
 export const PetPage = () => {
   const [pet, setPet] = useState<PetDetailInfo>();

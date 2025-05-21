@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { expect, test } from "@playwright/test";
 
 test.describe.skip("Pet of the day modal", () => {
   // test("opens modal", async ({ page }) => {

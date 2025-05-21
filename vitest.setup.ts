@@ -1,8 +1,10 @@
-import "@testing-library/jest-dom/vitest";
-import "@testing-library/jest-dom";
-import mockPetsData from "./tests/mocks/mockPetsData.json";
-import { PETS_API_URL } from "./src/services/constants";
 import { vi } from "vitest";
+
+import "@testing-library/jest-dom";
+import "@testing-library/jest-dom/vitest";
+
+import { PETS_API_URL } from "./src/services/constants";
+import mockPetsData from "./tests/mocks/mockPetsData.json";
 
 export const actualFetch = globalThis.fetch;
 

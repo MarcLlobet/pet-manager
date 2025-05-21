@@ -1,7 +1,10 @@
-import React from "react";
-import { render, screen } from "@testing-library/react";
-import { DetailView } from "./DetailView";
 import { describe, expect, it } from "vitest";
+
+import React from "react";
+
+import { render, screen } from "@testing-library/react";
+
+import { DetailView } from "./DetailView";
 
 describe("DetailView", () => {
   it("renders the image with correct src and alt", () => {

@@ -1,9 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { LimitType, PetListInfo, SortType } from "../types";
+
+import { Layout } from "../components/Layout";
+import { Table } from "../components/Table";
 import { useAppState } from "../context/AppContext";
 import { getPets } from "../controllers/getPets";
-import { Table } from "../components/Table";
-import { Layout } from "../components/Layout";
+import { LimitType, PetListInfo, SortType } from "../types";
 
 export const IndexPage = () => {
   const [pets, setPets] = useState<PetListInfo[]>([]);
