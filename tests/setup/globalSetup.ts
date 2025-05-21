@@ -1,6 +1,6 @@
 import { chromium, FullConfig } from "@playwright/test";
 import mockPetsData from "../mocks/mockPetsData.json" assert { type: "json" };
-import { PETS_API_URL } from "../../pages/index/getPetsEndpoint";
+import { PETS_API_URL } from "../../src/services/constants";
 
 async function globalSetup(_: FullConfig) {
   const browser = await chromium.launch();
@@ -24,10 +24,12 @@ async function globalSetup(_: FullConfig) {
     const url = request.url();
     const id = url.slice(PETS_API_URL.length + 1);
 
+    const mockPetData = mockPetsData.find((mockPet) => mockPet.id === Number(id));
+
     route.fulfill({
       status: 200,
       contentType: "application/json",
-      body: JSON.stringify(mockPetsData[Number(id)]),
+      body: JSON.stringify(mockPetData),
     });
   });
 
