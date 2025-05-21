@@ -14,7 +14,7 @@ export const getPets = async (params?: Record<string, string | number>): Promise
     url: PETS_API_URL,
     errorMessage: ERROR_MESSAGE,
     params,
-    mode: "session",
+    mode: "none",
   });
 
   return {

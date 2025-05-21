@@ -11,11 +11,13 @@ import SvgIcon, { SvgIconProps } from "@mui/material/SvgIcon";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 
-import { useTheme } from "../context/ThemeContext";
-import { getPetById } from "../controllers/getPetById";
 import { PetDetailInfo } from "../types";
 import { DetailView } from "./DetailView";
 import { Dialog } from "./Dialog";
+import { getPetById } from "../controllers/getPetById";
+import { useTheme } from "../context/ThemeContext";
+import DarkModeIcon from "@mui/icons-material/Brightness4";
+import IconButton from "@mui/material/IconButton";
 
 function Logo(props: SvgIconProps) {
   return (
@@ -83,7 +85,7 @@ function Header() {
 
   return (
     <>
-      <AppBar position="static">
+      <AppBar position="sticky">
         <Toolbar>
           <Box sx={{ flexGrow: 1 }}>
             <Box>
@@ -100,9 +102,9 @@ function Header() {
             </Box>
           </Box>
           <Box>
-            <Button color="inherit" onClick={toggleTheme}>
-              Toogle theme
-            </Button>
+            <IconButton color="inherit" onClick={toggleTheme} sx={{ mr: 2 }}>
+              <DarkModeIcon />
+            </IconButton>
           </Box>
           <Box>
             <Button color="inherit" onClick={handlePetOfTheDay}>
@@ -123,7 +125,7 @@ function Footer() {
     <Box
       component="footer"
       sx={{
-        backgroundColor: "primary.main",
+        backgroundColor: "#333",
         color: "white",
         textAlign: "center",
         padding: 2,

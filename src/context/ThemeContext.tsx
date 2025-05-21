@@ -1,14 +1,8 @@
-import {
-  DefaultTheme,
-  ThemeProvider as StyledThemeProvider,
-  createGlobalStyle,
-  useTheme as useStyledTheme,
-} from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
 import React, { useEffect, useState } from "react";
-
-import { ThemeProvider as MuiThemeProvider, createTheme } from "@mui/material/styles";
-
+import { createTheme, ThemeProvider as MuiThemeProvider, Theme, useTheme as useMuiTheme } from "@mui/material/styles";
+import { localStore } from "../services/tools/localStore";
 const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
@@ -19,171 +13,47 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const muiLightTheme = createTheme({
+const lightTheme = createTheme({
   palette: {
     mode: "light",
     primary: {
-      main: "#d219ce",
-    },
-    secondary: {
-      main: "#ff4081",
-    },
-    background: {
-      default: "#f5f5f5",
-      paper: "#ffffff",
-    },
-    text: {
-      primary: "#000000",
-      secondary: "#555555",
-    },
-  },
-  typography: {
-    fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
-    h6: {
-      fontWeight: 600,
-    },
-    body2: {
-      color: "#555555",
-    },
-  },
-  components: {
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          textTransform: "none",
-          borderRadius: "8px",
-        },
-      },
-    },
-    MuiDialog: {
-      styleOverrides: {
-        paper: {
-          borderRadius: "12px",
-        },
-      },
-    },
-    MuiTableCell: {
-      styleOverrides: {
-        head: {
-          fontWeight: 600,
-          backgroundColor: "#e0e0e0",
-        },
-        body: {
-          fontSize: "0.875rem",
-        },
-      },
+      main: "#f00",
     },
   },
 });
 
-const muiDarkTheme = createTheme({
+const darkTheme = createTheme({
   palette: {
     mode: "dark",
     primary: {
-      main: "#1e1e1e",
-    },
-    secondary: {
-      main: "#f48fb1",
-    },
-    background: {
-      default: "#121212",
-      paper: "#1e1e1e",
-    },
-    text: {
-      primary: "#ffffff",
-      secondary: "#aaaaaa",
-    },
-  },
-  typography: {
-    fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
-    h6: {
-      fontWeight: 600,
-    },
-    body2: {
-      color: "#aaaaaa",
-    },
-  },
-  components: {
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          textTransform: "none",
-          borderRadius: "8px",
-        },
-      },
-    },
-    MuiDialog: {
-      styleOverrides: {
-        paper: {
-          borderRadius: "12px",
-        },
-      },
-    },
-    MuiTableCell: {
-      styleOverrides: {
-        head: {
-          fontWeight: 600,
-          backgroundColor: "#333333",
-        },
-        body: {
-          fontSize: "0.875rem",
-        },
-      },
-    },
-    MuiLink: {
-      styleOverrides: {
-        root: {
-          color: "#4dabf7", // Nou color per als enllaços en dark mode
-          "&:hover": {
-            textDecoration: "underline",
-          },
-        },
-      },
+      main: "#0ff",
     },
   },
 });
 
-const lightTheme = {
-  background: "#ffffff",
-  color: "#000000",
-  header: {
-    background: "#e3f2fd",
-    color: "#000000",
-  },
-  footer: {
-    color: "#fff",
-    background: "#1e1e1e",
-  },
+const themeMap = {
+  light: lightTheme,
+  dark: darkTheme,
 };
 
-const darkTheme = {
-  background: "#000000",
-  color: "#ffffff",
-  header: {
-    background: "#1e1e1e",
-    color: "#ffffff",
-  },
-  footer: {
-    background: "#1e1e1e",
-    color: "#ffffff",
-  },
+const PREFERS_DARK_MODE_KEY = "Prefers_Dark_Mode";
+const getPrefersDarkMode = () => {
+  const hasPrefersDarkMode = localStore.get(PREFERS_DARK_MODE_KEY);
+  if (hasPrefersDarkMode) {
+    return true;
+  }
+  return window.matchMedia("(prefers-color-scheme: dark)").matches;
 };
-
-export type ThemeContext = DefaultTheme & { toggleTheme: () => void };
-
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [theme, setTheme] = useState(
-    window.matchMedia("(prefers-color-scheme: dark)").matches ? darkTheme : lightTheme,
-  );
-  const [muiTheme, setMuiTheme] = useState(
-    window.matchMedia("(prefers-color-scheme: dark)").matches ? muiDarkTheme : muiLightTheme,
-  );
+  const [prefersDarkMode, setPrefersDarkMode] = useState(getPrefersDarkMode());
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     const handleChange = () => {
-      setTheme(mediaQuery.matches ? darkTheme : lightTheme);
-      setMuiTheme(mediaQuery.matches ? muiDarkTheme : muiLightTheme);
+      setPrefersDarkMode((prevState) => {
+        localStore.set(PREFERS_DARK_MODE_KEY, !prevState);
+        return !prevState;
+      });
     };
 
     mediaQuery.addEventListener("change", handleChange);
@@ -191,18 +61,22 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === lightTheme ? darkTheme : lightTheme));
-    setMuiTheme((prevMuiTheme) => (prevMuiTheme === muiLightTheme ? muiDarkTheme : muiLightTheme));
+    setPrefersDarkMode((prevState) => {
+      localStore.set(PREFERS_DARK_MODE_KEY, !prevState);
+      return !prevState;
+    });
   };
 
+  const theme = prefersDarkMode ? themeMap.dark : themeMap.light;
+
   return (
-    <MuiThemeProvider theme={muiTheme}>
-      <StyledThemeProvider theme={{ ...theme, toggleTheme } as ThemeContext}>
-        <GlobalStyle />
-        {children}
-      </StyledThemeProvider>
+    <MuiThemeProvider theme={{ ...theme, toggleTheme }}>
+      <GlobalStyle />
+      {children}
     </MuiThemeProvider>
   );
 };
 
-export const useTheme = () => useStyledTheme() as ThemeContext;
+type ThemeContextProps = () => Theme & { toggleTheme: () => void };
+
+export const useTheme: ThemeContextProps = useMuiTheme;
