@@ -1,14 +1,3 @@
-export type SortType = "id" | "weight" | "height" | "length" | "name";
-export type OrderType = "asc" | "desc";
-export type LimitType = 5 | 10;
-
-export type FetchingOptions = {
-  _sort: SortType;
-  _page: number;
-  _limit: LimitType;
-  _order: OrderType;
-};
-
 export type PetKind = "cat" | "dog";
 
 export type PetCommonProps = {
@@ -19,6 +8,7 @@ export type PetCommonProps = {
   length: number;
   photo_url: string;
   description: string;
+  kind: PetKind;
 };
 
 export type Dog = PetCommonProps & {
@@ -30,4 +20,4 @@ export type Cat = PetCommonProps & {
   number_of_lives: number;
 };
 
-export type Pet = Dog | Cat;
+export type PetRaw = Dog | Cat;

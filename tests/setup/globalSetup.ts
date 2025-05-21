@@ -1,6 +1,6 @@
 import { chromium, FullConfig } from "@playwright/test";
 import mockPetsData from "../mocks/mockPetsData.json" assert { type: "json" };
-import { PETS_API_URL } from "../../pages/index/getPetsEndpoint";
+import { PETS_API_URL } from "../../src/services/constants";
 
 async function globalSetup(_: FullConfig) {
   const browser = await chromium.launch();

@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "dev": "tsx ./express-entry.ts",
+    "dev": "vite",
     "build": "vike build",
     "preview": "cross-env NODE_ENV=production tsx ./express-entry.ts",
     "type:check": "tsc",
@@ -9,7 +9,8 @@
     "prepare": "husky || true",
     "test:integration": "playwright test",
     "test:integration:ui": "playwright codegen",
-    "test:integration:install": "playwright install"
+    "test:integration:install": "playwright install",
+    "check:unused-exports": "ts-prune"
   },
   "dependencies": {
     "@universal-middleware/core": "^0.4.7",
@@ -55,6 +56,7 @@
     "react-jsx": "^1.0.0",
     "react-router-dom": "^7.6.0",
     "styled-components": "^6.1.18",
+    "ts-prune": "^0.10.3",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.31.0",
