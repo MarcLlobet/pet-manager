@@ -2,6 +2,14 @@ import { FullConfig, chromium } from "@playwright/test";
 
 import { PETS_API_URL } from "../../src/services/constants";
 import mockPetsData from "../mocks/mockPetsData.json" with { type: "json" };
+import { beforeEach } from "vitest";
+import { sessionStore } from "../../src/services/tools/sessionStore";
+import { localStore } from "../../src/services/tools/localStore";
+
+beforeEach(() => {
+  sessionStore.clear();
+  localStore.clear();
+});
 
 async function globalSetup(_: FullConfig) {
   const browser = await chromium.launch();

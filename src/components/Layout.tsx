@@ -44,7 +44,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
           flexGrow: 1,
           paddingTop: 2,
           paddingBottom: 2,
-          minHeight: "calc(100vh - 128px)", // Adjust for header and footer height
+          minHeight: "calc(100vh - 128px)",
         }}
       >
         {children}
@@ -57,6 +57,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
 function Header() {
   const { toggleTheme } = useTheme();
   const [isModalOpen, setModalOpen] = useState(false);
+  const [pet, setPetOfTheDay] = useState<PetDetailInfo>();
 
   const handlePetOfTheDay = () => {
     setModalOpen(true);
@@ -71,10 +72,9 @@ function Header() {
     return today.getDate();
   };
 
-  const [pet, setPetOfTheDay] = useState<PetDetailInfo>();
-  const dayOfTheMonth = getDayOfTheMonth();
-
   useEffect(() => {
+    const dayOfTheMonth = getDayOfTheMonth();
+
     (async function fetchOnMount() {
       const petData = await getPetById(dayOfTheMonth);
       setPetOfTheDay(petData);
