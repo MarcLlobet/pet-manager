@@ -1,6 +1,7 @@
-import { describe, it, expect, vi } from "vitest";
-import { getPetById, ERROR_MESSAGE } from "./getPetById";
+import { describe, expect, it, vi } from "vitest";
+
 import { PETS_API_URL } from "./constants";
+import { ERROR_MESSAGE, getPetById } from "./getPetById";
 
 describe("getPetById", () => {
   it("fetches a pet successfully by ID", async () => {
@@ -16,17 +17,17 @@ describe("getPetById", () => {
     };
     const mockResponse = new Response(JSON.stringify(mockPet));
 
-    global.fetch = vi.fn().mockResolvedValue(mockResponse);
+    globalThis.fetch = vi.fn().mockResolvedValue(mockResponse);
 
     const result = await getPetById(1);
     expect(result).toEqual(mockPet);
-    expect(global.fetch).toHaveBeenCalledWith(`${PETS_API_URL}/1`);
+    expect(globalThis.fetch).toHaveBeenCalledWith(`${PETS_API_URL}/1`);
   });
 
   it("throws an error when the pet is not found", async () => {
     const mockResponse = new Response(JSON.stringify({ status: 404 }), { status: 404 });
 
-    global.fetch = vi.fn().mockResolvedValue(mockResponse);
+    globalThis.fetch = vi.fn().mockResolvedValue(mockResponse);
 
     await expect(getPetById(999)).rejects.toThrow(ERROR_MESSAGE);
   });

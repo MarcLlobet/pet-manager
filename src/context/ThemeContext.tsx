@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
 import {
   DefaultTheme,
   ThemeProvider as StyledThemeProvider,
   createGlobalStyle,
   useTheme as useStyledTheme,
 } from "styled-components";
-import { createTheme, ThemeProvider as MuiThemeProvider } from "@mui/material/styles";
+
+import React, { useEffect, useState } from "react";
+
+import { ThemeProvider as MuiThemeProvider, createTheme } from "@mui/material/styles";
 
 const GlobalStyle = createGlobalStyle`
   body {

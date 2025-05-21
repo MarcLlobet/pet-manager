@@ -1,7 +1,8 @@
-import { describe, it, expect } from "vitest";
-import { getPetsAdapter, singlePetAdapter } from "./getPetsAdapter";
-import { healthTypes } from "./getPetHealth";
+import { describe, expect, it } from "vitest";
+
 import { PetRaw } from "../services/types";
+import { healthTypes } from "./getPetHealth";
+import { getPetsAdapter, singlePetAdapter } from "./getPetsAdapter";
 
 describe("getPetsAdapter", () => {
   it("transforms a single pet correctly", () => {

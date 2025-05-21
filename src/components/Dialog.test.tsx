@@ -1,7 +1,10 @@
-import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
-import { Dialog } from "./Dialog";
 import { describe, expect, it, vi } from "vitest";
+
+import React from "react";
+
+import { fireEvent, render, screen } from "@testing-library/react";
+
+import { Dialog } from "./Dialog";
 
 describe("Dialog", () => {
   it("renders the dialog content", () => {

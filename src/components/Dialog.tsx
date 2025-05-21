@@ -1,11 +1,12 @@
 import React from "react";
-import Button from "@mui/material/Button";
+
 import CloseIcon from "@mui/icons-material/Close";
+import Button from "@mui/material/Button";
 import DialogMui from "@mui/material/Dialog";
-import IconButton from "@mui/material/IconButton";
-import DialogTitle from "@mui/material/DialogTitle";
-import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
+import IconButton from "@mui/material/IconButton";
 
 export const Dialog = ({ onClose, modalContent }: { onClose: () => void; modalContent: React.ReactNode }) => {
   return (
