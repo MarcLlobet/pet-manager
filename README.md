@@ -4,7 +4,6 @@ A frontend project built with **React**, **TypeScript**, focused on clean archit
 
 ![Gravació de pantalla 2025-05-22 a les 17 17 24](https://github.com/user-attachments/assets/6f28aeb5-7aed-40ae-86c0-c9fc9bea6ca7)
 
-
 ---
 
 ## 🚀 Getting Started
@@ -19,6 +18,7 @@ To run the project locally, follow these steps:
 > If you use npm, just run `npm i -g yarn`
 
 ## 📁 DX oriented
+
 To see the full potential of the checks just run `yarn precommit`. All checks will pass.
 
 ### 📁 Project Structure

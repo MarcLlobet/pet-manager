@@ -4,9 +4,9 @@ import Grid from "@mui/material/Grid";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
-import styled from "styled-components";
 
 type Detail = {
+  key: string;
   title: string;
   value: string;
 };
@@ -21,20 +21,20 @@ type DetailViewProps = {
   };
 };
 
-export const Portrait = styled.figure`
-  margin: 0;
-  max-height: 100%;
-  min-width: 100%;
-  padding-right: 20px;
-  box-sizing: border-box;
-`;
-
 export const DetailViewComponent = ({ item }: DetailViewProps) => {
   const { image, details } = item;
   return (
     <Grid container rowSpacing={1} columnSpacing={{ sm: 2, md: 3 }} sx={{ paddingY: "2rem" }}>
       <Grid size={{ xs: 12, sm: 6 }}>
-        <Portrait>
+        <figure
+          style={{
+            margin: "0",
+            maxHeight: "100%",
+            minWidth: "100%",
+            paddingRight: "20px",
+            boxSizing: "border-box",
+          }}
+        >
           <img
             src={image.src}
             alt={image.alt}
@@ -45,12 +45,12 @@ export const DetailViewComponent = ({ item }: DetailViewProps) => {
               height: "auto",
             }}
           />
-        </Portrait>
+        </figure>
       </Grid>
       <Grid size={{ xs: 12, sm: 6 }}>
         <List>
-          {details.map(({ title, value }) => (
-            <ListItem key={title} disablePadding dense>
+          {details.map(({ key, title, value }) => (
+            <ListItem key={key} disablePadding dense>
               <ListItemText
                 primary={title}
                 secondary={value}

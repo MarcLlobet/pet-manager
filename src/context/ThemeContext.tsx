@@ -37,7 +37,7 @@ const lightThemeConfig = {
 const darkThemeConfig = {
   palette: {
     background: {
-      default: "#121212",
+      default: "#4a3f3f",
       paper: "#1e1e1e",
     },
     text: {

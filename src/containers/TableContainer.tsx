@@ -34,7 +34,8 @@ export const TableContainer = () => {
   useEffect(() => {
     (async function fetchPets() {
       const { pets: fetchedPetsData, totalPets } = await getPets(state);
-      await Promise.resolve(() => setTimeout(() => {}, 1000)); // only for demo purposes
+      await Promise.resolve(() => setTimeout(() => {}, 1000));
+      // only for demo purposes
       setPets(fetchedPetsData);
       setTotalPets(totalPets);
     })();
