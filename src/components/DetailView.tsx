@@ -29,11 +29,11 @@ export const Portrait = styled.figure`
   box-sizing: border-box;
 `;
 
-export const DetailView = ({ item }: DetailViewProps) => {
+export const DetailViewComponent = ({ item }: DetailViewProps) => {
   const { image, details } = item;
   return (
-    <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-      <Grid size={6}>
+    <Grid container rowSpacing={1} columnSpacing={{ sm: 2, md: 3 }} sx={{ paddingY: "2rem" }}>
+      <Grid size={{ xs: 12, sm: 6 }}>
         <Portrait>
           <img
             src={image.src}
@@ -47,11 +47,18 @@ export const DetailView = ({ item }: DetailViewProps) => {
           />
         </Portrait>
       </Grid>
-      <Grid size={6}>
+      <Grid size={{ xs: 12, sm: 6 }}>
         <List>
           {details.map(({ title, value }) => (
             <ListItem key={title} disablePadding dense>
-              <ListItemText primary={title} secondary={value} />
+              <ListItemText
+                primary={title}
+                secondary={value}
+                slotProps={{
+                  primary: { color: "text.primary", fontWeight: "bold" },
+                  secondary: { color: "text.secondary" },
+                }}
+              />
             </ListItem>
           ))}
         </List>
@@ -59,3 +66,5 @@ export const DetailView = ({ item }: DetailViewProps) => {
     </Grid>
   );
 };
+
+export const DetailView = React.memo(DetailViewComponent);

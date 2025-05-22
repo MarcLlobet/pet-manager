@@ -1,82 +1,68 @@
-import { createGlobalStyle } from "styled-components";
-
-import React, { useEffect, useState } from "react";
-import { createTheme, ThemeProvider as MuiThemeProvider, Theme, useTheme as useMuiTheme } from "@mui/material/styles";
+import React, { createContext, useContext, useMemo, useState } from "react";
+import { ThemeProvider as MuiThemeProvider, createTheme } from "@mui/material/styles";
 import { localStore } from "../services/tools/localStore";
-const GlobalStyle = createGlobalStyle`
-  body {
-    margin: 0;
-  }
 
-  .MuiContainer-root {
-    min-height: calc(100vh - 116px);
-  }
-`;
-
-const lightTheme = createTheme({
-  palette: {
-    mode: "light",
-    primary: {
-      main: "#f00",
-    },
-  },
+const ThemeContext = createContext({
+  mode: "light",
+  toggleTheme: () => {},
 });
 
-const darkTheme = createTheme({
+const PREFERS_THEME_MODE_KEY = "Prefers_Theme_Mode";
+
+const getStoredTheme = () => {
+  const prefersTheme = localStore.get(PREFERS_THEME_MODE_KEY);
+  if (prefersTheme) {
+    return prefersTheme;
+  }
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+  return prefersDark ? "dark" : "light";
+};
+
+const toggleMode = (mode: "light" | "dark") => (mode === "light" ? "dark" : "light");
+
+const lightThemeConfig = {
   palette: {
-    mode: "dark",
-    primary: {
-      main: "#0ff",
+    background: {
+      default: "#ffffff",
+      paper: "#f5f5f5",
+    },
+    text: {
+      primary: "#000000",
+      secondary: "#555555",
     },
   },
-});
-
-const themeMap = {
-  light: lightTheme,
-  dark: darkTheme,
 };
 
-const PREFERS_DARK_MODE_KEY = "Prefers_Dark_Mode";
-const getPrefersDarkMode = () => {
-  const hasPrefersDarkMode = localStore.get(PREFERS_DARK_MODE_KEY);
-  if (hasPrefersDarkMode) {
-    return true;
-  }
-  return window.matchMedia("(prefers-color-scheme: dark)").matches;
+const darkThemeConfig = {
+  palette: {
+    background: {
+      default: "#121212",
+      paper: "#1e1e1e",
+    },
+    text: {
+      primary: "#ffffff",
+      secondary: "#bbbbbb",
+    },
+  },
 };
+
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [prefersDarkMode, setPrefersDarkMode] = useState(getPrefersDarkMode());
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const handleChange = () => {
-      setPrefersDarkMode((prevState) => {
-        localStore.set(PREFERS_DARK_MODE_KEY, !prevState);
-        return !prevState;
-      });
-    };
-
-    mediaQuery.addEventListener("change", handleChange);
-    return () => mediaQuery.removeEventListener("change", handleChange);
-  }, []);
+  const storedTheme = getStoredTheme;
+  const [mode, setMode] = useState<"light" | "dark">(storedTheme);
 
   const toggleTheme = () => {
-    setPrefersDarkMode((prevState) => {
-      localStore.set(PREFERS_DARK_MODE_KEY, !prevState);
-      return !prevState;
-    });
+    localStore.set(PREFERS_THEME_MODE_KEY, toggleMode(mode));
+    setMode((prevMode) => toggleMode(prevMode));
   };
 
-  const theme = prefersDarkMode ? themeMap.dark : themeMap.light;
+  const theme = useMemo(() => createTheme(mode === "light" ? lightThemeConfig : darkThemeConfig), [mode]);
 
   return (
-    <MuiThemeProvider theme={{ ...theme, toggleTheme }}>
-      <GlobalStyle />
-      {children}
-    </MuiThemeProvider>
+    <ThemeContext.Provider value={{ mode, toggleTheme }}>
+      <MuiThemeProvider theme={theme}>{children}</MuiThemeProvider>
+    </ThemeContext.Provider>
   );
 };
 
-type ThemeContextProps = () => Theme & { toggleTheme: () => void };
-
-export const useTheme: ThemeContextProps = useMuiTheme;
+export const useTheme = () => useContext(ThemeContext);

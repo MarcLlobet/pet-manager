@@ -35,3 +35,5 @@ export const Dialog = ({ onClose, modalContent }: { onClose: () => void; modalCo
     </DialogMui>
   );
 };
+
+export default Dialog;

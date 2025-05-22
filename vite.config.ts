@@ -3,6 +3,8 @@ import type { UserConfig } from "vite";
 
 import react from "@vitejs/plugin-react";
 
+export const PORT = 5173;
+
 export default defineConfig({
   plugins: [
     react({
@@ -22,5 +24,8 @@ export default defineConfig({
     environment: "jsdom",
     setupFiles: ["vitest.setup.ts"],
     include: ["**/?(*.)test.ts?(x)"],
+  },
+  server: {
+    port: PORT,
   },
 } as UserConfig);
