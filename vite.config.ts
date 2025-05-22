@@ -6,18 +6,13 @@ import react from "@vitejs/plugin-react";
 export const PORT = 5173;
 
 export default defineConfig({
-  plugins: [
-    react({
-      babel: {
-        plugins: [["babel-plugin-styled-components"]],
-      },
-    }),
-  ],
+  plugins: [react({})],
   ssr: {
-    noExternal: ["styled-components", "@mui"],
+    noExternal: ["@mui"],
   },
   build: {
     target: "es2022",
+    rollupOptions: {},
   },
   test: {
     globals: true,

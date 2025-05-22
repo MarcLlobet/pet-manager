@@ -21,14 +21,21 @@ export const Dialog = ({ onClose, modalContent }: { onClose: () => void; modalCo
           position: "absolute",
           right: 8,
           top: 8,
-          color: theme.palette.grey[500],
+          color: theme.palette.text.primary,
         })}
       >
         <CloseIcon />
       </IconButton>
       <DialogContent dividers>{modalContent}</DialogContent>
       <DialogActions>
-        <Button aria-label="bottom-close" autoFocus onClick={onClose}>
+        <Button
+          aria-label="bottom-close"
+          autoFocus
+          onClick={onClose}
+          sx={(theme) => ({
+            color: theme.palette.text.primary,
+          })}
+        >
           Close
         </Button>
       </DialogActions>

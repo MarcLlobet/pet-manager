@@ -23,6 +23,7 @@ import Skeleton from "@mui/material/Skeleton";
 
 import { LimitType, OrderType, PetListInfo, SortType } from "../types";
 import { Typography } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 type TablePaginationActionsProps = {
   count: number;
@@ -117,6 +118,7 @@ export const DataTableComponent = ({
   onPageChange,
   onRowsPerPageChange,
 }: PetTableProps) => {
+  const theme = useTheme();
   const createSortHandler = useCallback(
     (property: Column) => () => {
       onRequestSort(property as SortType);
@@ -186,7 +188,7 @@ export const DataTableComponent = ({
                     <Link to={`${item.id}`} style={{ textDecoration: "none" }}>
                       <Typography
                         sx={{
-                          color: "primary.main",
+                          color: theme.palette.text.primary,
                           textTransform: "capitalize",
                           fontWeight: "bold",
                         }}
@@ -207,6 +209,9 @@ export const DataTableComponent = ({
             <TablePagination
               sx={{
                 justifySelf: "right",
+                "& .MuiIconButton-root, & .MuiSelect-icon": {
+                  color: theme.palette.text.primary,
+                },
               }}
               rowsPerPageOptions={[5, 10] as LimitType[]}
               colSpan={columns.length + 1}

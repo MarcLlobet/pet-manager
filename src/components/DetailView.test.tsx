@@ -24,8 +24,8 @@ describe("DetailView", () => {
     const mockItem = {
       image: { src: "test-image.jpg", alt: "Test Image" },
       details: [
-        { title: "Name", value: "Jade" },
-        { title: "Weight", value: "1000 grams" },
+        { key: "name", title: "Name", value: "Jade" },
+        { key: "weight", title: "Weight", value: "1000 grams" },
       ],
     };
 

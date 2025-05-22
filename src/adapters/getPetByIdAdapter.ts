@@ -3,7 +3,9 @@ import { PetDetail, PetDetailInfo } from "../types";
 import { getPetHealth } from "./getPetHealth";
 
 const getCapitalized = (text: string) => {
-  return String(text).charAt(0).toUpperCase() + String(text).slice(1);
+  const txt = String(text).replace(/_/g, " ");
+  const capitalized = txt.charAt(0).toUpperCase() + txt.slice(1);
+  return capitalized;
 };
 
 const detailsMapper: Record<string, (data: number | string) => string> = {

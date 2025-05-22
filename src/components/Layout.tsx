@@ -1,14 +1,14 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import { useTheme } from "@mui/material/styles"; // Importar el hook useTheme
+import { useTheme } from "@mui/material/styles";
 
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import GlobalStyles from "@mui/material/GlobalStyles";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
-  const theme = useTheme(); // Obtenir el tema actual
+  const theme = useTheme();
 
   return (
     <>
