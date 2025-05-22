@@ -2,3 +2,4 @@ yarn prettier --write .
 yarn eslint . --fix
 yarn type:check
 yarn test
+yarn test:integration

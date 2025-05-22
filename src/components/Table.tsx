@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import React from "react";
+import React, { useCallback, Suspense } from "react";
 
 import FirstPageIcon from "@mui/icons-material/FirstPage";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
@@ -8,7 +8,7 @@ import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
-import Paper from "@mui/material/Paper";
+
 import TableMui from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -19,6 +19,7 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import TableSortLabel from "@mui/material/TableSortLabel";
 import visuallyHidden from "@mui/utils/visuallyHidden";
+import Skeleton from "@mui/material/Skeleton";
 
 import { LimitType, OrderType, PetListInfo, SortType } from "../types";
 import { Typography } from "@mui/material";
@@ -30,28 +31,40 @@ type TablePaginationActionsProps = {
   onPageChange: (event: React.MouseEvent<HTMLButtonElement>, newPage: number) => void;
 };
 
-type Item = PetListInfo;
-type ItemKeys = keyof Item;
-type Column = Exclude<ItemKeys, "image">;
+export type Item = PetListInfo;
+export type ItemKeys = keyof Item;
+export type Column = Exclude<ItemKeys, "image">;
 
 function TablePaginationActions(props: TablePaginationActionsProps) {
   const { count, page, rowsPerPage, onPageChange } = props;
 
-  const handleFirstPageButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    onPageChange(event, 0);
-  };
+  const handleFirstPageButtonClick = useCallback(
+    (event: React.MouseEvent<HTMLButtonElement>) => {
+      onPageChange(event, 0);
+    },
+    [onPageChange],
+  );
 
-  const handleBackButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    onPageChange(event, page - 1);
-  };
+  const handleBackButtonClick = useCallback(
+    (event: React.MouseEvent<HTMLButtonElement>) => {
+      onPageChange(event, page - 1);
+    },
+    [onPageChange, page],
+  );
 
-  const handleNextButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    onPageChange(event, page + 1);
-  };
+  const handleNextButtonClick = useCallback(
+    (event: React.MouseEvent<HTMLButtonElement>) => {
+      onPageChange(event, page + 1);
+    },
+    [onPageChange, page],
+  );
 
-  const handleLastPageButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
-  };
+  const handleLastPageButtonClick = useCallback(
+    (event: React.MouseEvent<HTMLButtonElement>) => {
+      onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
+    },
+    [onPageChange, count, rowsPerPage],
+  );
 
   return (
     <Box sx={{ flexShrink: 0, ml: 2.5 }}>
@@ -92,7 +105,7 @@ export type PetTableProps = {
   onRowsPerPageChange: (newLimit: LimitType) => void;
 };
 
-export const Table = ({
+export const DataTableComponent = ({
   items,
   columns,
   totalPets,
@@ -104,23 +117,43 @@ export const Table = ({
   onPageChange,
   onRowsPerPageChange,
 }: PetTableProps) => {
-  const createSortHandler = (property: Column) => () => {
-    onRequestSort(property as SortType);
-  };
+  const createSortHandler = useCallback(
+    (property: Column) => () => {
+      onRequestSort(property as SortType);
+    },
+    [onRequestSort],
+  );
 
-  const handleChangePage = (_: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
-    onPageChange(newPage);
-  };
+  const handleChangePage = useCallback(
+    (_: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
+      onPageChange(newPage);
+    },
+    [onPageChange],
+  );
 
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const rowsPerPageNumber = parseInt(event.target.value, 10);
-    onRowsPerPageChange(rowsPerPageNumber as LimitType);
-  };
+  const handleChangeRowsPerPage = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const rowsPerPageNumber = parseInt(event.target.value, 10);
+      onRowsPerPageChange(rowsPerPageNumber as LimitType);
+    },
+    [onRowsPerPageChange],
+  );
 
   return (
-    <TableContainer component={Paper}>
-      <TableMui size="small" sx={{ minHeight: 400 }}>
-        <TableHead>
+    <TableContainer
+      sx={{
+        minHeight: "100%",
+        display: "flex",
+        flexDirection: "column",
+        padding: 0,
+      }}
+    >
+      <TableMui size="small">
+        <TableHead
+          sx={{
+            position: "sticky",
+          }}
+        >
           <TableRow>
             <TableCell></TableCell>
             {columns.map((column) => (
@@ -172,6 +205,9 @@ export const Table = ({
         <TableFooter>
           <TableRow>
             <TablePagination
+              sx={{
+                justifySelf: "right",
+              }}
               rowsPerPageOptions={[5, 10] as LimitType[]}
               colSpan={columns.length + 1}
               count={totalPets}
@@ -187,3 +223,56 @@ export const Table = ({
     </TableContainer>
   );
 };
+
+const SkeletonTableBody = ({ nRows, nCols }: { nRows: number; nCols: number }) => (
+  <>
+    {Array.from({ length: nRows }).map((_, index) => (
+      <TableRow key={index}>
+        <TableCell>
+          <Skeleton variant="rectangular" width={50} height={50} />
+        </TableCell>
+        {Array.from({ length: nCols }).map((_, index) => (
+          <TableCell key={`${index}`}>
+            <Skeleton variant="text" />
+          </TableCell>
+        ))}
+      </TableRow>
+    ))}
+  </>
+);
+
+export const SkeletonTable = ({ nRows, nCols }: { nRows: number; nCols: number }) => (
+  <TableMui>
+    <TableBody>
+      <SkeletonTableBody nRows={nRows} nCols={nCols} />
+    </TableBody>
+  </TableMui>
+);
+
+export const Table = ({
+  items,
+  columns,
+  totalPets,
+  rowsPerPage,
+  page,
+  orderBy,
+  orderType,
+  onRequestSort,
+  onPageChange,
+  onRowsPerPageChange,
+}: PetTableProps) => (
+  <Suspense fallback={<SkeletonTable nRows={rowsPerPage} nCols={columns.length} />}>
+    <DataTableComponent
+      items={items}
+      columns={columns}
+      totalPets={totalPets}
+      rowsPerPage={rowsPerPage}
+      page={page}
+      orderBy={orderBy}
+      orderType={orderType}
+      onRequestSort={onRequestSort}
+      onPageChange={onPageChange}
+      onRowsPerPageChange={onRowsPerPageChange}
+    />
+  </Suspense>
+);

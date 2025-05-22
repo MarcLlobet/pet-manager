@@ -9,7 +9,7 @@ export const initialData = {
   _limit: 5,
 } as FetchingOptions;
 
-const AppStateContext = createContext<{
+export const AppStateContext = createContext<{
   state: FetchingOptions;
   setState: React.Dispatch<React.SetStateAction<FetchingOptions>>;
 } | null>(null);

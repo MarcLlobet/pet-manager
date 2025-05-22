@@ -1,4 +1,5 @@
 import { defineConfig } from "@playwright/test";
+import { PORT } from "./vite.config";
 
 export default defineConfig({
   testDir: "./tests/integration",
@@ -6,7 +7,7 @@ export default defineConfig({
   retries: 1,
   globalSetup: "./tests/setup/globalSetup.ts",
   use: {
-    baseURL: "http://localhost:5175",
+    baseURL: `http://localhost:${PORT}`,
     headless: true,
     viewport: { width: 1280, height: 720 },
     ignoreHTTPSErrors: true,

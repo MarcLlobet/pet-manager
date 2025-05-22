@@ -20,7 +20,7 @@ export const PetPage = () => {
       const pet = await getPetById(pathId);
       setPet(pet);
     })();
-  });
+  }, []);
 
   return (
     <div data-testid="pet-details-page">

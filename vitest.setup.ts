@@ -1,10 +1,12 @@
-import { vi } from "vitest";
+import { beforeEach, vi } from "vitest";
 
 import "@testing-library/jest-dom";
 import "@testing-library/jest-dom/vitest";
 
 import { PETS_API_URL } from "./src/services/constants";
 import mockPetsData from "./tests/mocks/mockPetsData.json";
+import { localStore } from "./src/services/tools/localStore";
+import { sessionStore } from "./src/services/tools/sessionStore";
 
 export const actualFetch = globalThis.fetch;
 
@@ -35,4 +37,9 @@ globalThis.fetch = vi.fn((urlProp: string | URL | RequestInfo) => {
       statusText: "Not Found",
     }),
   );
+});
+
+beforeEach(() => {
+  sessionStore.clear();
+  localStore.clear();
 });
