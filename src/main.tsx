@@ -9,12 +9,12 @@ import { ThemeProvider } from "./context/ThemeContext";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <BrowserRouter>
+    <ThemeProvider>
       <AppStateProvider>
-        <ThemeProvider>
+        <BrowserRouter>
           <AppRoutes />
-        </ThemeProvider>
+        </BrowserRouter>
       </AppStateProvider>
-    </BrowserRouter>
+    </ThemeProvider>
   </StrictMode>,
 );
