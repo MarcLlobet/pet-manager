@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Fever App Slides</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="stylesheet" href="./node_modules/reveal.js/plugin/highlight/monokai.css" />
+    <link rel="stylesheet" href="./node_modules/reveal.js/dist/reveal.css" />
+    <link rel="stylesheet" href="./node_modules/reveal.js/dist/theme/simple.css" />
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section
+          class="slide-wrapper"
+          data-markdown="slides.md"
+          data-separator="^---"
+          data-separator-vertical="^\*\*\*"
+          data-separator-notes="^Note:"
+          data-charset="utf-8"
+        ></section>
+      </div>
+    </div>
+
+    <script type="module">
+      import Reveal from "./node_modules/reveal.js/dist/reveal.esm.js";
+      import RevealMarkdown from "./node_modules/reveal.js/plugin/markdown/markdown.esm.js";
+      import RevealHighlight from "./node_modules/reveal.js/plugin/highlight/highlight.esm.js";
+
+      Reveal.initialize({
+        plugins: [RevealMarkdown, RevealHighlight],
+        center: false,
+        display: "flex",
+        hash: true,
+      });
+    </script>
+  </body>
+</html>

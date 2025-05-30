@@ -1,0 +1,17 @@
+{
+  "name": "slides",
+  "scripts": {
+    "run:bundle": "yarn vite-bundle-visualizer -c ../vite.config.ts -o bundle.html --entry ../src/main.tsx",
+    "run:depcheck": "yarn depcheck ../../fever_pets",
+    "run:npm-check": "yarn npm-check ../",
+    "coverage": "vitest run --coverage"
+  },
+  "dependencies": {
+    "reveal.js": "^5.2.1"
+  },
+  "devDependencies": {
+    "depcheck": "^1.4.7",
+    "npm-check": "^6.0.1",
+    "vite-bundle-visualizer": "^1.2.1"
+  }
+}

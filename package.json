@@ -10,7 +10,8 @@
     "test:integration": "playwright test",
     "test:integration:ui": "playwright codegen",
     "test:integration:install": "playwright install",
-    "precommit": "bash .husky/pre-commit"
+    "precommit": "bash .husky/pre-commit",
+    "slides": "vite --config slides/vite.config.ts"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^4.4.1",
