@@ -48,6 +48,11 @@ This structure promotes clarity, scalability, and testability — each layer has
 - Integration tests with Playwright simulate real user behavior
 - Tests are written following a BDD-style to align with the business requirements provided in the original exercise
 
+### 📁 Slides
+
+Run `yarn` in /slides.
+And then you can run `yarn slides` to see the presentation for the project.
+
 ---
 
 Built with ❤️ clean code, strong architecture, and a touch of feline fun 🐈

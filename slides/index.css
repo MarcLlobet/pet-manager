@@ -1,0 +1,76 @@
+:root {
+  --key-color: #26ffa8;
+  --r-background-color: #272222;
+  --r-main-color: #fff;
+  --r-heading-color: var(--key-color);
+  --r-heading-font: Helvetica, Arial, sans-serif;
+  --r-main-font: Helvetica, Arial, sans-serif;
+  --r-main-font-size: 36px;
+  --r-heading-font-weight: 100;
+  --r-code-font: Courier, monospace;
+  --r-code-color: var(--key-color);
+  --r-link-color: var(--key-color);
+  --r-selection-background-color: var(--key-color);
+  --r-selection-color: #fff;
+}
+
+.reveal .slides {
+  text-align: left;
+}
+
+.reveal .slides .slide-wrapper {
+  height: 100%;
+  flex-direction: column;
+}
+
+.reveal .slides :where(h1, h2, h3, h4, h5, h6):is(:only-child) {
+  text-align: center;
+  font-weight: bold;
+  place-self: center;
+  margin: auto;
+}
+
+.reveal :where(p, li) > code {
+  color: var(--key-color);
+}
+
+.reveal h6 + p > img {
+  max-height: calc(100dvh - 80px);
+  box-sizing: border-box;
+  margin: auto;
+  text-align: center;
+  position: static;
+  width: auto;
+  display: block;
+}
+
+.reveal img {
+  color: var(--key-color);
+  font-family: var(--r-code-font);
+}
+
+.reveal iframe {
+  flex-grow: 1;
+}
+
+.reveal .image-pip {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.reveal .image-pip img {
+  position: absolute;
+}
+.reveal .image-pip p:first-child img {
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.reveal .image-pip p:last-child img {
+  width: 75%;
+  bottom: 0;
+  right: 0;
+  border: 2px solid var(--key-color);
+}

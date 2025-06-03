@@ -1,0 +1,4 @@
+ignores: [
+    "@vitest/coverage-v8", # Vitest coverage reporter
+  ]
+skip-missing: true
