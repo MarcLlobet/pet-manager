@@ -1,0 +1,28 @@
+
+
+
+meta {
+  name: Get all pets
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://localhost:3090/pets?_sort=height&_order=desc&_limit=5&_page=2
+  body: none
+  auth: inherit
+}
+
+params:query {
+  _sort: height
+  _order: desc
+  _limit: 5
+  _page: 2
+}
+
+
+
+
+
+
+

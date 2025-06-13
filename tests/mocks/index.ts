@@ -1,4 +1,4 @@
-import mockPetsDataJson from "../mocks/mockPetsData.json" with { type: "json" };
+import mockPetsDataJson from "./mockPetsData.json" with { type: "json" };
 import { PetRaw } from "../../src/services/types";
 
 const mockPetsData = mockPetsDataJson as PetRaw[];

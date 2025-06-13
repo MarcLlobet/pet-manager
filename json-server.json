@@ -2,5 +2,6 @@
   "port": 3090,
   "host": "localhost",
   "watch": true,
-  "version": 0
+  "version": 0,
+  "read-only": true
 }

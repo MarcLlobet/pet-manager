@@ -12,7 +12,7 @@
     "test:integration:install": "playwright install",
     "precommit": "bash .husky/pre-commit",
     "slides": "vite --config slides/vite.config.ts",
-    "server": "json-server server/index.json --port 3090"
+    "server": "json-server server/pets.json --port 3090"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^4.4.1",
@@ -31,6 +31,7 @@
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
+    "@types/json-server": "^0.14.8",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.5",
     "@vitest/coverage-v8": "3.1.3",

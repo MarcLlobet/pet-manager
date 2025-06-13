@@ -2,7 +2,7 @@
 
 A frontend project built with **React**, **TypeScript**, focused on clean architecture, strong typing, and excellent developer experience.
 
-![Gravació de pantalla 2025-05-22 a les 17 17 24](https://github.com/user-attachments/assets/6f28aeb5-7aed-40ae-86c0-c9fc9bea6ca7)
+![](./demo.gif)
 
 ---
 
