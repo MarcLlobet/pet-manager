@@ -11,7 +11,8 @@
     "test:integration:ui": "playwright codegen",
     "test:integration:install": "playwright install",
     "precommit": "bash .husky/pre-commit",
-    "slides": "vite --config slides/vite.config.ts"
+    "slides": "vite --config slides/vite.config.ts",
+    "server": "json-server server/index.json --port 3090"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^4.4.1",
@@ -42,6 +43,7 @@
     "husky": "^9.1.7",
     "jiti": "^2.4.2",
     "jsdom": "^26.1.0",
+    "json-server": "^0.17.4",
     "playwright": "^1.52.0",
     "prettier": "^3.5.3",
     "react-router-dom": "^7.6.0",

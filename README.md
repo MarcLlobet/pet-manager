@@ -1,4 +1,4 @@
-# 🐾 Fever Pets
+# 🐾 Pet Manager
 
 A frontend project built with **React**, **TypeScript**, focused on clean architecture, strong typing, and excellent developer experience.
 
@@ -11,6 +11,7 @@ A frontend project built with **React**, **TypeScript**, focused on clean archit
 To run the project locally, follow these steps:
 
 - 📦 Install dependencies: `yarn`
+- 🔌 Run server: `yarn server`
 - 🧪 Start the dev server: `yarn dev`
 - ✅ Run unit tests with Vitest: `yarn test`
 
@@ -26,7 +27,7 @@ To see the full potential of the checks just run `yarn precommit`. All checks wi
 Below is an overview of the folder structure and their responsibilities:
 
 ```
-fever_pets/
+pet-manager/
 ├── src/
 │   ├── adapters/          # 🧩 Adapt data from services to UI-friendly shapes
 │   ├── components/        # 🧱 Reusable, presentational React components

@@ -1,4 +1,4 @@
-# Fever Pets App 🐶
+# Pet Manager App 🐶
 
 ---
 
@@ -86,7 +86,7 @@
 ###### Architecture 🏗️ > Root folders 📂
 
 ```
-fever_pets/
+pet-manager/
 ├── src/                   # 🧩 App code
 ├── tests/                 # 🧪 Integration tests
 ├── slides/                # 📊 This slides

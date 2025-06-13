@@ -14,7 +14,7 @@ export const Footer = () => {
         marginTop: "auto",
       }}
     >
-      <Typography>© {new Date().getFullYear()} Fever Pets.</Typography>
+      <Typography>© {new Date().getFullYear()} Pet Manager.</Typography>
     </Box>
   );
 };

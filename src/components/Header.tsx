@@ -30,7 +30,7 @@ export const Header = () => {
                 <Logo fill="white" />
               </Box>
               <Typography variant="h6" component="div">
-                Fever Pets
+                Pet Manager
               </Typography>
             </Link>
           </Box>

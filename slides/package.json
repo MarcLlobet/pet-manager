@@ -2,7 +2,7 @@
   "name": "slides",
   "scripts": {
     "run:bundle": "yarn vite-bundle-visualizer -c ../vite.config.ts -o bundle.html --entry ../src/main.tsx",
-    "run:depcheck": "yarn depcheck ../../fever_pets",
+    "run:depcheck": "yarn depcheck ../../pet-manager",
     "run:npm-check": "yarn npm-check ../",
     "coverage": "vitest run --coverage"
   },

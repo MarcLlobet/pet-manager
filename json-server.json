@@ -1,0 +1,6 @@
+{
+  "port": 3090,
+  "host": "localhost",
+  "watch": true,
+  "version": 0
+}

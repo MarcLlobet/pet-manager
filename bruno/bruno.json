@@ -1,6 +1,0 @@
-{
-  "version": "1",
-  "name": "fever_pets",
-  "type": "collection",
-  "ignore": ["node_modules", ".git"]
-}
