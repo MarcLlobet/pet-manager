@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { lazy, useState } from "react";
 import { Link } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -9,8 +9,9 @@ import IconButton from "@mui/material/IconButton";
 import DarkModeIcon from "@mui/icons-material/Brightness4";
 
 import { useTheme } from "../context/ThemeContext";
-import { PetOfTheDayModal } from "./PetOfTheDayModal";
 import { Logo } from "./Logo";
+
+const PetOfTheDayModal = lazy(() => import("../containers/PetOfTheDayModal"));
 
 export const Header = () => {
   const { toggleTheme } = useTheme();

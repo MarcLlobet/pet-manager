@@ -42,8 +42,10 @@ export const getMockedPetsData = (url: string): PetRaw[] => {
 };
 
 export const getMockedPetIdData = (url: string): PetRaw | undefined => {
-  const id = url.split("/").at(-1);
-  const mockPetData = mockPetsData.find((mockPet) => mockPet.id === Number(id));
+  const urlObject = new URL(url);
+  const petId = urlObject.pathname.split("/").at(-1);
+  const mockPetData = mockPetsData.find((mockPet) => mockPet.id === Number(petId));
+
   return mockPetData;
 };
 

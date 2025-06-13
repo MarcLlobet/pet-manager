@@ -1,13 +1,17 @@
+import React, { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
+import { Layout } from "../components/Layout";
 
-import React from "react";
-
-import { IndexPage } from "../pages/index";
-import { PetPage } from "../pages/pet";
+const IndexPage = lazy(() => import("../pages/index"));
+const PetPage = lazy(() => import("../pages/pet"));
 
 export const AppRoutes = () => (
-  <Routes>
-    <Route path="/" element={<IndexPage />} />
-    <Route path="/:id" element={<PetPage />} />
-  </Routes>
+  <Suspense fallback={<Layout />}>
+    <Routes>
+      <Route element={<Layout />}>
+        <Route index element={<IndexPage />} />
+        <Route path=":id" element={<PetPage />} />
+      </Route>
+    </Routes>
+  </Suspense>
 );

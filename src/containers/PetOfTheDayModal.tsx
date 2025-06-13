@@ -1,11 +1,10 @@
-import React, { useEffect, useState, lazy, Suspense } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import Modal from "@mui/material/Modal";
 
-import { DetailView } from "./DetailView";
+import { DetailView } from "../components/DetailView";
 import { getPetById } from "../controllers/getPetById";
 import { PetDetailInfo } from "../types";
-
-const Dialog = lazy(() => import("./Dialog"));
+import Dialog from "../components/Dialog";
 
 export const PetOfTheDayModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
   const [pet, setPetOfTheDay] = useState<PetDetailInfo>();
@@ -30,3 +29,5 @@ export const PetOfTheDayModal = ({ isOpen, onClose }: { isOpen: boolean; onClose
     </Modal>
   );
 };
+
+export default PetOfTheDayModal;

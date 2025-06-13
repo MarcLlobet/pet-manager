@@ -1,13 +1,17 @@
-import { MemoryRouter } from "react-router-dom";
 import { beforeAll, describe, expect, it, vi } from "vitest";
 
 import React from "react";
 
 import { render, screen } from "@testing-library/react";
+import { MemoryRouter, Routes, Route } from "react-router-dom";
 
 import { AppStateProvider } from "../context/AppContext";
 import { ThemeProvider } from "../context/ThemeContext";
 import { Layout } from "./Layout";
+
+vi.mock("../containers/PetOfTheDayModal", () => ({
+  default: () => <div data-testid="pet-of-the-day-modal" />,
+}));
 
 beforeAll(() => {
   window.matchMedia = vi.fn().mockImplementation((query) => ({
@@ -18,31 +22,29 @@ beforeAll(() => {
 });
 
 describe("Layout", () => {
-  const renderWithProviders = (ui: React.ReactNode) =>
+  const renderWithProviders = (outletContent?: React.ReactNode) =>
     render(
-      <MemoryRouter>
+      <ThemeProvider>
         <AppStateProvider>
-          <ThemeProvider>{ui}</ThemeProvider>
+          <MemoryRouter>
+            <Routes>
+              <Route element={<Layout />}>
+                <Route index element={outletContent ?? <div>Home</div>} />
+              </Route>
+            </Routes>
+          </MemoryRouter>
         </AppStateProvider>
-      </MemoryRouter>,
+      </ThemeProvider>,
     );
 
-  it("renders the header", () => {
-    renderWithProviders(
-      <Layout>
-        <div>Test Content</div>
-      </Layout>,
-    );
+  it("renders the header", async () => {
+    renderWithProviders();
 
-    expect(screen.getByTestId("logo")).toBeInTheDocument();
+    expect(await screen.findByTestId("logo")).toBeInTheDocument();
   });
 
-  it("renders the children content", () => {
-    renderWithProviders(
-      <Layout>
-        <div>Test Content</div>
-      </Layout>,
-    );
+  it("renders the children content via Outlet", () => {
+    renderWithProviders(<div>Test Content</div>);
 
     expect(screen.getByText("Test Content")).toBeInTheDocument();
   });

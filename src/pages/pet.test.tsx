@@ -3,7 +3,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 
-import { PetPage } from "./pet";
+import PetPage from "./pet";
 import { getPetById } from "../controllers/getPetById";
 import { PetDetailInfo } from "../types";
 

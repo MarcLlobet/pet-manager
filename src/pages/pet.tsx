@@ -3,11 +3,10 @@ import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 
 import { DetailView } from "../components/DetailView";
-import { Layout } from "../components/Layout";
 import { getPetById } from "../controllers/getPetById";
 import { PetDetailInfo } from "../types";
 
-export const PetPage = () => {
+const PetPage = () => {
   const [pet, setPet] = useState<PetDetailInfo>();
   const pathParams = useParams();
 
@@ -22,9 +21,7 @@ export const PetPage = () => {
     })();
   }, []);
 
-  return (
-    <div data-testid="pet-details-page">
-      <Layout>{pet ? <DetailView item={pet} /> : null}</Layout>
-    </div>
-  );
+  return <div data-testid="pet-details-page">{pet ? <DetailView item={pet} /> : null}</div>;
 };
+
+export default PetPage;

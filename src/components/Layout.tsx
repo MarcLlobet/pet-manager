@@ -6,8 +6,9 @@ import { useTheme } from "@mui/material/styles";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import GlobalStyles from "@mui/material/GlobalStyles";
+import { Outlet } from "react-router-dom";
 
-export const Layout = ({ children }: { children: React.ReactNode }) => {
+export const Layout = () => {
   const theme = useTheme();
 
   return (
@@ -41,7 +42,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
             margin: "0 auto",
           }}
         >
-          {children}
+          <Outlet />
         </Container>
         <Footer />
       </Box>
