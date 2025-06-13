@@ -1,8 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { PETS_API_URL } from "./constants";
+import { PETS_API_URL, TOTAL_COUNT_HEADER } from "./constants";
 import { getPets } from "./getPets";
-import { TOTAL_COUNT_HEADER } from "./tools/fetchService";
 
 describe("getPets", () => {
   it("fetches pets successfully with correct params", async () => {

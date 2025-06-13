@@ -19,6 +19,6 @@ export const getPets = async (params?: Record<string, string | number>): Promise
 
   return {
     pets: data as PetRaw[],
-    totalPets: total ? Number(total) : 0,
+    totalPets: total,
   };
 };

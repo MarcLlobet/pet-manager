@@ -1,10 +1,11 @@
-import { expect, test } from "@playwright/test";
+import { expect } from "@playwright/test";
+import { test } from "../setup";
 
 test.describe("functionalities", () => {
   test("goes to details page", async ({ page }) => {
     await page.goto("/");
-    await page.getByRole("link", { name: "Jade" }).click();
-    await expect(page.getByText("Jade")).toBeVisible();
+    await page.getByRole("link", { name: "Mock - Jade" }).click();
+    await expect(page.getByText("Mock - Jade")).toBeVisible();
     await expect(page.getByText("Description")).toBeVisible();
     await expect(page.getByTestId("pet-details-page")).toBeVisible();
   });

@@ -1,8 +1,8 @@
+import { TOTAL_COUNT_HEADER } from "../constants";
 import { localStore } from "./localStore";
 import { noneStore } from "./noneStore";
 import { sessionStore } from "./sessionStore";
 
-export const TOTAL_COUNT_HEADER = "x-total-count";
 export const getSearchParams = (params: Record<string, unknown>) => {
   const stringifiedParams = Object.entries(params).map(([searchParamKey, searchParamValue]) => [
     searchParamKey,
@@ -33,7 +33,7 @@ type FetchServiceProps = RawFetchProps & {
 };
 
 type FetchServiceResponse = {
-  total: number | string;
+  total: number;
   data: unknown;
 };
 
@@ -52,7 +52,8 @@ export const rawFetch = async ({ url, errorMessage }: RawFetchProps) => {
     throw new Error(errorMessage);
   }
 
-  const total = response.headers.get(TOTAL_COUNT_HEADER) ?? 0;
+  const totalHeader = response.headers.get(TOTAL_COUNT_HEADER);
+  const total = totalHeader ? Number(totalHeader) : 0;
 
   return {
     data,

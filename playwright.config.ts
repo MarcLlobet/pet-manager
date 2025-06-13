@@ -5,7 +5,6 @@ export default defineConfig({
   testDir: "./tests/integration",
   timeout: 30000,
   retries: 1,
-  globalSetup: "./tests/setup/globalSetup.ts",
   use: {
     baseURL: `http://localhost:${PORT}`,
     headless: true,

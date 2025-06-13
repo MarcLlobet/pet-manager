@@ -5,8 +5,15 @@ import { useAppState } from "../context/AppContext";
 import { PetListInfo } from "../types";
 
 export const TableContainer = () => {
-  const [pets, setPets] = useState<PetListInfo[]>([]);
-  const [totalPets, setTotalPets] = useState<number>(0);
+  const [petsData, setPetsData] = useState<{
+    pets: PetListInfo[];
+    totalPets: number;
+    loading: boolean;
+  }>({
+    pets: [],
+    totalPets: 0,
+    loading: true,
+  });
   const { state, setState } = useAppState();
 
   const handleSort = (property: typeof state._sort) => {
@@ -33,25 +40,28 @@ export const TableContainer = () => {
 
   useEffect(() => {
     (async function fetchPets() {
-      const { pets: fetchedPetsData, totalPets } = await getPets(state);
+      const { pets: fetchedPetsData, totalPets: fetchedTotalPets } = await getPets(state);
       await Promise.resolve(() => setTimeout(() => {}, 1000));
       // only for demo purposes
-      setPets(fetchedPetsData);
-      setTotalPets(totalPets);
+      setPetsData({
+        pets: fetchedPetsData,
+        totalPets: fetchedTotalPets,
+        loading: false,
+      });
     })();
   }, [state]);
 
   const columns = ["id", "name", "kind", "weight", "height", "length"] as Column[];
 
-  if (!pets?.length) {
+  if (petsData?.loading) {
     return <SkeletonTable nRows={state?._limit ?? 5} nCols={columns.length} />;
   }
-
+  console.log("total", petsData?.totalPets);
   return (
     <Table
-      items={pets}
+      items={petsData?.pets}
       columns={columns}
-      totalPets={totalPets}
+      totalPets={petsData?.totalPets}
       rowsPerPage={state._limit}
       page={state._page - 1}
       orderBy={state._sort}

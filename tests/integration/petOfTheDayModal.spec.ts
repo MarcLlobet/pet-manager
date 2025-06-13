@@ -1,4 +1,5 @@
-import { expect, test } from "@playwright/test";
+import { expect } from "@playwright/test";
+import { test } from "../setup";
 
 test.describe("Pet of the day modal", () => {
   test("opens modal", async ({ page }) => {
