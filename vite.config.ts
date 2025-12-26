@@ -6,6 +6,7 @@ import react from "@vitejs/plugin-react";
 export const PORT = 5173;
 
 export default defineConfig({
+  base: "/pet-manager/",
   plugins: [react({})],
   ssr: {
     noExternal: ["@mui"],
